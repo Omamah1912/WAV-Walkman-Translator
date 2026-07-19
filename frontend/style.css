@@ -1,0 +1,305 @@
+:root {
+  --bg: #2c3c42;
+  --bg-deep: #14201f;
+  --paper: #e8dcc0;
+  --paper-shadow: #b8a97e;
+  --ink: #2a2420;
+  --rust: #8a4a3a;
+  --moss: #5c6b56;
+  --fog: #9db0ad;
+  --danger: #b3543f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 3px),
+    radial-gradient(ellipse at 50% 0%, #3a4d51 0%, var(--bg) 45%, var(--bg-deep) 100%);
+  color: var(--fog);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 64px;
+}
+
+.page {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.brand h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.brand .tagline {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--fog);
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* ---------- request form ---------- */
+
+.request-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(232, 220, 192, 0.15);
+  border-radius: 6px;
+  padding: 14px 16px 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.request-form label {
+  font-size: 0.78rem;
+  color: var(--fog);
+  opacity: 0.8;
+  letter-spacing: 0.03em;
+}
+
+.request-form input[type="text"] {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  background: #1b2523;
+  border: 1px solid rgba(232, 220, 192, 0.2);
+  border-radius: 4px;
+  color: var(--paper);
+  outline: none;
+}
+
+.request-form input[type="text"]:focus {
+  border-color: var(--rust);
+}
+
+.request-form input[type="text"]::placeholder {
+  color: rgba(157, 176, 173, 0.5);
+}
+
+.request-form button {
+  align-self: flex-end;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 9px 20px;
+  background: linear-gradient(180deg, #6b463c, #4a2e26);
+  color: var(--paper);
+  border: 1px solid rgba(0,0,0,0.4);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.request-form button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.request-form button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 rgba(0,0,0,0.5);
+}
+
+.request-form button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.status {
+  min-height: 1.1em;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--fog);
+  opacity: 0.85;
+  margin: -6px 0 0;
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+/* ---------- walkman ---------- */
+
+.walkman-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.walkman-body {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1587 / 2245;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.5));
+}
+
+.walkman-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* reels — positioned to align with the reel windows drawn in assets/walkman.png.
+   Adjust these percentages if you swap in a differently-proportioned image. */
+
+.reel {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spin 2.6s linear infinite;
+  animation-play-state: paused;
+}
+
+.reel-left {
+  left: 26.9%;
+  top: 34.0%;
+  width: 23.3%;
+  height: 16.5%;
+}
+
+.reel-right {
+  left: 49.5%;
+  top: 34.0%;
+  width: 23.3%;
+  height: 16.5%;
+}
+
+.reel-spokes {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(232, 220, 192, 0.22) 0deg 6deg,
+      transparent 6deg 45deg
+    );
+  mix-blend-mode: overlay;
+}
+
+.reel.spinning {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* tape label — sits over the cream label rectangle baked into the artwork */
+
+.tape-label {
+  position: absolute;
+  left: 34.2%;
+  top: 51.9%;
+  width: 31.3%;
+  height: 4.5%;
+  background: var(--paper);
+  border: 1px solid var(--paper-shadow);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: clamp(0.7rem, 3.6vw, 1.15rem);
+  line-height: 1;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 4%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+
+/* controls — overlaid near the control-icon row of the artwork */
+
+.controls {
+  position: absolute;
+  left: 14%;
+  top: 62.5%;
+  width: 72%;
+  height: 6.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4%;
+  background: rgba(10, 14, 13, 0.55);
+  border-radius: 8px;
+  padding: 0 4%;
+  backdrop-filter: blur(1px);
+}
+
+.ctrl-btn {
+  flex: 1;
+  height: 78%;
+  font-size: clamp(0.7rem, 3vw, 1rem);
+  font-family: 'Special Elite', monospace;
+  color: var(--paper);
+  background: linear-gradient(180deg, #4a5450, #2c3532);
+  border: 1px solid rgba(232, 220, 192, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.ctrl-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.ctrl-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ctrl-btn#play-btn:not(:disabled):hover {
+  border-color: var(--moss);
+}
+
+.ctrl-btn#pause-btn:not(:disabled):hover {
+  border-color: var(--fog);
+}
+
+.ctrl-btn#stop-btn:not(:disabled):hover {
+  border-color: var(--danger);
+}
+
+@media (max-width: 360px) {
+  .brand h1 {
+    font-size: 1.3rem;
+  }
+}

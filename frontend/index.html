@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Walkman Melody Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="page">
+
+  <header class="brand">
+    <h1>Walkman Melody Player</h1>
+    <p class="tagline">describe a feeling. get a tape.</p>
+  </header>
+
+  <form id="request-form" class="request-form">
+    <label for="melody-request">what should side A sound like?</label>
+    <input
+      type="text"
+      id="melody-request"
+      name="request"
+      placeholder="a sad slow tune in A minor..."
+      autocomplete="off"
+      required
+    />
+    <button type="submit" id="generate-btn">Play ▶</button>
+  </form>
+
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <div class="walkman-wrap">
+    <div class="walkman-body" id="walkman-body">
+      <img src="assets/walkman.png" alt="Walkman cassette player" class="walkman-img" draggable="false" />
+
+      <div class="reel reel-left" id="reel-left" aria-hidden="true">
+        <div class="reel-spokes"></div>
+      </div>
+      <div class="reel reel-right" id="reel-right" aria-hidden="true">
+        <div class="reel-spokes"></div>
+      </div>
+
+      <div class="tape-label" id="tape-label">no tape loaded</div>
+
+      <div class="controls">
+        <button type="button" class="ctrl-btn" id="play-btn" title="Play" disabled>&#9654;</button>
+        <button type="button" class="ctrl-btn" id="pause-btn" title="Pause" disabled>&#10074;&#10074;</button>
+        <button type="button" class="ctrl-btn" id="stop-btn" title="Stop" disabled>&#9632;</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-player" preload="auto"></audio>
+
+</div>
+
+<script src="walkman.js"></script>
+</body>
+</html>

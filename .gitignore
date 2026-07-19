@@ -1,0 +1,7 @@
+.env
+backend/synth
+backend/synth.exe
+backend/notes.txt
+backend/output.wav
+__pycache__/
+*.pyc
